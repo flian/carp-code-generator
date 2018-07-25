@@ -12,5 +12,21 @@
     <artifactId>code-generator-core</artifactId>
 
     <name>code-generator-core</name>
-    
+    <dependencies>
+        <dependency>
+            <artifactId>code-generator-base</artifactId>
+            <groupId>org.lotus.carp</groupId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
