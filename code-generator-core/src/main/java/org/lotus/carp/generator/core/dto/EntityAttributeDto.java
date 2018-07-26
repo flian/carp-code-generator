@@ -16,4 +16,5 @@ public class EntityAttributeDto {
     private String propertyType;
     private boolean isPK;
     private boolean isAutoincrement;
+    private String comment;
 }

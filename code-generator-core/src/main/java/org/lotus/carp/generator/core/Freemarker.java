@@ -41,6 +41,10 @@ public class Freemarker implements Prefix {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String prefix() {
         return "template";

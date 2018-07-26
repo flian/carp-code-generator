@@ -14,20 +14,28 @@ import java.util.List;
 @Data
 public class EntityDto {
     private String tableName;
-    private String name;
+    private String className;
     private String date;
     private String time;
     private String author;
     private String uuid;
-    private String packageName;
+    private String entityPackageName;
+    private String repositoryPackageName;
     private String entitySufix;
     private String repositorySufix;
     private String pkType;
+    private String comment;
     private List<EntityAttributeDto> attributes;
-    public String getEntityFileName(){
-        return name+entitySufix+".java";
+
+    public String getEntityFileName() {
+        return className + entitySufix + ".java";
     }
-    public String getRepositoryFileName(){
-        return name+repositorySufix+".java";
+
+    public String getRepositoryFileName() {
+        return className + repositorySufix + ".java";
+    }
+
+    public String getName() {
+        return className;
     }
 }

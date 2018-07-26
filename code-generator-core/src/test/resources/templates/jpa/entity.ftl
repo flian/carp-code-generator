@@ -17,10 +17,13 @@ import java.util.Date;
 @Entity
 @Table(name = "${entity.tableName}")
 @Data
-public class ${entity.name} implements Serializable {
+public class ${entity.name}${entity.entitySufix} implements Serializable {
     private static final long serialVersionUID = ${entity.uuid};
 
 <#list attributes as attr>
+    /**
+     *${attr.comment}
+     */
     <#if attr.isPK>@Id</#if>
     @Column(name = "${attr.columnName}")
     <#if attr.isAutoincrement>

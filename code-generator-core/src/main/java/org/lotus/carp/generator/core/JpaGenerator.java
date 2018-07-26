@@ -112,9 +112,11 @@ public class JpaGenerator {
             entityDto.setRepositorySufix(jpaConfig.getRepositorySufix());
             entityDto.setTableName(table.getName());
             entityDto.setUuid("" + uuid() + "L");
-            entityDto.setPackageName(jpaConfig.getEntityPackage());
-            String javaFileName = toClassName(table.getName());
-            entityDto.setName(javaFileName);
+            entityDto.setEntityPackageName(jpaConfig.getEntityPackage());
+            entityDto.setRepositoryPackageName(jpaConfig.getRepositoryPackage());
+            String className = toClassName(table.getName());
+            entityDto.setName(className);
+            entityDto.setComment(table.getComment());
             entityDto.setPkType(map2JavaType(table.firstPkColumn()));
             entityDto.setAttributes(table.getColumns().stream().map(column -> {
                 EntityAttributeDto entityAttributeDto = new EntityAttributeDto();
@@ -123,6 +125,7 @@ public class JpaGenerator {
                 entityAttributeDto.setColumnName(column.getName());
                 entityAttributeDto.setPropertyName(toPropertyName(column.getName()));
                 entityAttributeDto.setPropertyType(map2JavaType(column));
+                entityAttributeDto.setComment(column.getComment());
                 return entityAttributeDto;
             }).collect(Collectors.toList()));
             result.add(entityDto);
