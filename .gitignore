@@ -1,4 +1,6 @@
 .idea
+#gen code will put here
+gen
 *.iml
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
