@@ -1,6 +1,6 @@
-package${entity.repositoryPackage};
+package ${entity.repositoryPackage};
 
-import ${entity.entityPackage}.${entity.name};
+import ${entity.entityPackage}.${entity.name}${entity.entitySufix};
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
