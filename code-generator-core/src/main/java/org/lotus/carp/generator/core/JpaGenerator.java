@@ -1,6 +1,13 @@
 package org.lotus.carp.generator.core;
 
+import freemarker.template.Template;
 import org.lotus.carp.generator.base.config.Config;
+import org.lotus.carp.generator.base.table.Databse;
+import org.lotus.carp.generator.base.table.Table;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,8 +17,30 @@ import org.lotus.carp.generator.base.config.Config;
  * Time: 9:59 AM
  */
 public class JpaGenerator {
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-        FreemarkerConfig freemarkerConfig = Config.config(FreemarkerConfig.class);
-        JpaConfig jpaConfig = Config.config(JpaConfig.class);
+    private static JpaConfig jpaConfig;
+    private static List<Table> tableInfo = (new Databse()).gatherInfo();
+
+    static {
+        try {
+            jpaConfig = Config.config(JpaConfig.class);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void rendEntity2Console() {
+        Template entityTemplate = Freemarker.template(jpaConfig.getEntityTemplateName());
+        Map params = new HashMap();
+        params.put("tableInfo", tableInfo);
+        Freemarker.render2Console(entityTemplate, params);
+    }
+
+    public void rendRepository2Console() {
+        Template entityTemplate = Freemarker.template(jpaConfig.getRepositoryTemplateName());
+        Map params = new HashMap();
+        params.put("tableInfo", tableInfo);
+        Freemarker.render2Console(entityTemplate, params);
     }
 }
