@@ -2,7 +2,8 @@ package org.lotus.carp.generator.core;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,12 +17,14 @@ public class JpaGeneratorTest {
     @Test
     public void rendEntity2Console() {
         JpaGenerator generator = new JpaGenerator();
-        generator.rendEntity2Console();
+        Writer out = new OutputStreamWriter(System.out);
+        generator.rendEntity(out);
     }
 
     @Test
     public void rendRepository2Console() {
         JpaGenerator generator = new JpaGenerator();
-        generator.rendRepository2Console();
+        Writer out = new OutputStreamWriter(System.out);
+        generator.rendRepository(out);
     }
 }

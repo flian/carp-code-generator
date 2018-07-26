@@ -10,7 +10,6 @@ import org.lotus.carp.generator.base.config.Prefix;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Map;
 
@@ -51,9 +50,6 @@ public class Freemarker implements Prefix {
         return dir + "/" + type;
     }
 
-    public static void render2Console(Template template, Map params) {
-        render(template, params, new OutputStreamWriter(System.out));
-    }
 
     public static void render(Template template, Map params, Writer out) {
         try {
