@@ -1,5 +1,6 @@
 package org.lotus.carp.generator.core;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -15,5 +16,12 @@ public class JpaGeneratorTest {
     public void rendEntityAndRepositoryTest() {
         JpaGenerator generator = new JpaGenerator();
         generator.rendEntityAndRepository(true);
+    }
+
+    @Test
+    @Ignore
+    public void rendEntityAndRepository2FileTest() {
+        JpaGenerator generator = new JpaGenerator();
+        generator.rendEntityAndRepository();
     }
 }

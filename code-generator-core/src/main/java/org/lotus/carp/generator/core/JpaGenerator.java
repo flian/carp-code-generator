@@ -33,7 +33,7 @@ public class JpaGenerator {
     private static List<Table> tableInfo = (new Databse()).gatherInfo();
     private String date;
     private String time;
-    private String pathSeparator = File.pathSeparator;
+    private String pathSeparator = "/";
 
     public JpaGenerator() {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -79,8 +79,8 @@ public class JpaGenerator {
                 entityWriter = repositoryWriter = new PrintWriter(System.out);
             } else {
                 if (!printOnConsole) {
-                    String entityOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getEntityPackage().replaceAll(".", pathSeparator) + pathSeparator;
-                    String repositoryOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getRepositoryPackage().replaceAll(".", pathSeparator) + pathSeparator;
+                    String entityOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getEntityPackage().replaceAll("\\.", pathSeparator) + pathSeparator;
+                    String repositoryOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getRepositoryPackage().replaceAll("\\.", pathSeparator) + pathSeparator;
 
                     Path entityOutPath = Paths.get(entityOutputDir);
                     Path repositoryPath = Paths.get(repositoryOutputDir);
