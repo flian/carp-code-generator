@@ -46,6 +46,7 @@
         <assertj.version>2.2.0</assertj.version>
         <logback.verison>1.0.13</logback.verison>
         <guava.version>19.0</guava.version>
+        <hibernate.jpa.api.version>1.0.2.Final</hibernate.jpa.api.version>
     </properties>
     <repositories>
         <repository>
@@ -121,6 +122,12 @@
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-jpa</artifactId>
                 <version>${spring.data.jpa.verison}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <version>${hibernate.jpa.api.version}</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
