@@ -17,4 +17,8 @@ public class EntityAttributeDto {
     private boolean pk;
     private boolean autoincrement;
     private String comment;
+
+    public boolean getHasComment() {
+        return comment == null || comment.length() == 0 ? false : true;
+    }
 }

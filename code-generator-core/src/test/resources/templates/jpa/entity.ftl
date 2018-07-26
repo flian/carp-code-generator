@@ -21,9 +21,11 @@ public class ${entity.name}${entity.entitySufix} implements Serializable {
     private static final long serialVersionUID = ${entity.uuid};
 
 <#list entity.attributes as attr>
+    <#if attr.hasComment>
     /**
      *${attr.comment}
      */
+    </#if>
     <#if attr.pk>@Id</#if>
     @Column(name = "${attr.columnName}")
     <#if attr.autoincrement>
