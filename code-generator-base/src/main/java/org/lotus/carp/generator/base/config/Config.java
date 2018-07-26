@@ -46,7 +46,16 @@ public class Config {
         return generator.getProperty(key);
     }
 
-    private static <T extends Prefix> T config(Class<T> clazz) throws IllegalAccessException, InstantiationException {
+    /**
+     * 初始化配置对象
+     *
+     * @param clazz
+     * @param <T>
+     * @return
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
+    public static <T extends Prefix> T config(Class<T> clazz) throws IllegalAccessException, InstantiationException {
         T obj = clazz.newInstance();
         Arrays.stream(clazz.getDeclaredFields()).forEach(f -> {
             String val = get(obj.prefix() + "." + f.getName());
