@@ -23,6 +23,8 @@ public class JpaConfig implements Prefix {
     private String repositorySufix;
     private String repositoryTemplateName;
 
+    private String author = "carp-code-generator";
+
     @Override
     public String prefix() {
         return "jpa";

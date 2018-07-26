@@ -1,4 +1,4 @@
-package org.lotus.carp.generator.core.sample.entity;
+package ${entity.packageName};
 
 import lombok.Data;
 
@@ -8,34 +8,24 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created  by carp-code-generator
+ * Created  by ${entity.author}
  *
- * @author: carp-code-generator
- * Date: 7/17/2018
- * Time: 4:33 PM
+ * @author: ${entity.author}
+ * Date: ${entity.date}
+ * Time: ${entity.time}
  */
 @Entity
-@Table(name = "account_address")
+@Table(name = "${entity.tableName}")
 @Data
-public class AccountAddressEntity implements Serializable {
-    private static final long serialVersionUID = 5000089111291759450L;
-    @Id
-    @Column(name = "id")
+public class ${entity.name} implements Serializable {
+    private static final long serialVersionUID = ${entity.uuid};
+
+<#list attributes as attr>
+    <#if attr.isPK>@Id</#if>
+    @Column(name = "${attr.columnName}")
+    <#if attr.isAutoincrement>
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-
-    @Column(name = "coin_id")
-    private Long coinId;
-
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "update_time")
-    private Date updateTime;
-
-    @Column(name = "amount")
-    private BigDecimal amount;
-
+    </#if>
+    private ${attr.propertyType} ${attr.propertyName};
+</#list>
 }

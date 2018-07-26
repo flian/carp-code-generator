@@ -44,4 +44,11 @@ public class Table {
         }
         throw new RuntimeException("column not exist. column name is:" + colName);
     }
+
+    public Column firstPkColumn() {
+        if (null != primaryKeys && primaryKeys.size() > 0) {
+            return findColumnByName(primaryKeys.get(0).getName());
+        }
+        return null;
+    }
 }
