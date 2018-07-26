@@ -1,5 +1,6 @@
 package org.lotus.carp.generator.base.config;
 
+import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -59,6 +60,9 @@ public class Config {
         T obj = clazz.newInstance();
         Arrays.stream(clazz.getDeclaredFields()).forEach(f -> {
             String val = get(obj.prefix() + "." + f.getName());
+            if (Strings.isNullOrEmpty(val)) {
+                return;
+            }
             f.setAccessible(true);
             Class type = f.getType();
             try {

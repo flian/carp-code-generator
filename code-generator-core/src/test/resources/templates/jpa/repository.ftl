@@ -1,6 +1,6 @@
-package org.lotus.carp.generator.core.sample.repository;
+package${entity.repositoryPackage};
 
-import ${entity.entityPackageName}.${entity.name};
+import ${entity.entityPackage}.${entity.name};
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * Time: ${entity.time}
  */
 @Repository
-public interface ${entity.entityName}${entity.repositorySufix} extends PagingAndSortingRepository<${entity.name}${entity.entitySufix},${entity.pkType}> {
+public interface ${entity.name}${entity.repositorySufix} extends PagingAndSortingRepository<${entity.name}${entity.entitySufix},${entity.pkType}> {
 }

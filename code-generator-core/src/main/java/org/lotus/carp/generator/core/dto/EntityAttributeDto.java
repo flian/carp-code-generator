@@ -14,7 +14,7 @@ public class EntityAttributeDto {
     private String columnName;
     private String propertyName;
     private String propertyType;
-    private boolean isPK;
-    private boolean isAutoincrement;
+    private boolean pk;
+    private boolean autoincrement;
     private String comment;
 }

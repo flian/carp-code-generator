@@ -19,8 +19,8 @@ public class EntityDto {
     private String time;
     private String author;
     private String uuid;
-    private String entityPackageName;
-    private String repositoryPackageName;
+    private String entityPackage;
+    private String repositoryPackage;
     private String entitySufix;
     private String repositorySufix;
     private String pkType;

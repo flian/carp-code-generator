@@ -1,4 +1,4 @@
-package ${entity.packageName};
+package ${entity.entityPackage};
 
 import lombok.Data;
 
@@ -20,13 +20,13 @@ import java.util.Date;
 public class ${entity.name}${entity.entitySufix} implements Serializable {
     private static final long serialVersionUID = ${entity.uuid};
 
-<#list attributes as attr>
+<#list entity.attributes as attr>
     /**
      *${attr.comment}
      */
-    <#if attr.isPK>@Id</#if>
+    <#if attr.pk>@Id</#if>
     @Column(name = "${attr.columnName}")
-    <#if attr.isAutoincrement>
+    <#if attr.autoincrement>
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     </#if>
     private ${attr.propertyType} ${attr.propertyName};

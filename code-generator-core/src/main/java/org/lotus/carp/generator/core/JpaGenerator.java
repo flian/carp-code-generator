@@ -73,8 +73,6 @@ public class JpaGenerator {
         Template repositoryTemplate = Freemarker.template(jpaConfig.getRepositoryTemplateName());
 
         colectionEntityList().stream().forEach(item -> {
-            Map params = new HashMap();
-            params.put("entity", item);
             Writer entityWriter = null;
             Writer repositoryWriter = null;
             if (printOnConsole) {
@@ -96,6 +94,8 @@ public class JpaGenerator {
                     }
                 }
             }
+            Map params = new HashMap();
+            params.put("entity", item);
             Freemarker.render(entityTemplate, params, entityWriter);
             Freemarker.render(repositoryTemplate, params, repositoryWriter);
         });
@@ -112,16 +112,16 @@ public class JpaGenerator {
             entityDto.setRepositorySufix(jpaConfig.getRepositorySufix());
             entityDto.setTableName(table.getName());
             entityDto.setUuid("" + uuid() + "L");
-            entityDto.setEntityPackageName(jpaConfig.getEntityPackage());
-            entityDto.setRepositoryPackageName(jpaConfig.getRepositoryPackage());
+            entityDto.setEntityPackage(jpaConfig.getEntityPackage());
+            entityDto.setRepositoryPackage(jpaConfig.getRepositoryPackage());
             String className = toClassName(table.getName());
-            entityDto.setName(className);
+            entityDto.setClassName(className);
             entityDto.setComment(table.getComment());
             entityDto.setPkType(map2JavaType(table.firstPkColumn()));
             entityDto.setAttributes(table.getColumns().stream().map(column -> {
                 EntityAttributeDto entityAttributeDto = new EntityAttributeDto();
                 entityAttributeDto.setAutoincrement(column.isAutoincrement());
-                entityAttributeDto.setPK(table.isColAutoincrementPrimaryKey(column.getName()));
+                entityAttributeDto.setPk(table.isColAutoincrementPrimaryKey(column.getName()));
                 entityAttributeDto.setColumnName(column.getName());
                 entityAttributeDto.setPropertyName(toPropertyName(column.getName()));
                 entityAttributeDto.setPropertyType(map2JavaType(column));
