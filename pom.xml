@@ -45,6 +45,7 @@
         <junit.version>4.12</junit.version>
         <assertj.version>2.2.0</assertj.version>
         <logback.verison>1.0.13</logback.verison>
+        <guava.version>19.0</guava.version>
     </properties>
     <repositories>
         <repository>
@@ -64,6 +65,13 @@
         </repository>
     </repositories>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

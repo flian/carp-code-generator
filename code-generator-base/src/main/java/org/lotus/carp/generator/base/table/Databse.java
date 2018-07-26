@@ -35,7 +35,19 @@ public class Databse {
                     Table table = new Table();
                     table.setName(tableName);
                     table.setComment(tableComment);
+                    //extract primaryKeys
+                    List<PrimaryKey> primaryKeys = new ArrayList<>();
+                    ResultSet primaryKeysRs = md.getPrimaryKeys(con.getCatalog(), con.getSchema(), tableName);
+                    while (primaryKeysRs.next()) {
+                        PrimaryKey key = new PrimaryKey();
+                        key.setName(primaryKeysRs.getString("COLUMN_NAME"));
+                        key.setSeq(primaryKeysRs.getInt("KEY_SEQ"));
+                        primaryKeys.add(key);
+                    }
+                    table.setPrimaryKeys(primaryKeys);
+                    primaryKeysRs.close();
 
+                    //extract columns
                     List<Column> columns = new ArrayList<>();
                     ResultSet columnsRs = md.getColumns(con.getCatalog(), "%%", tableName, "%%");
                     while (columnsRs.next()) {
@@ -43,6 +55,9 @@ public class Databse {
                         col.setName(columnsRs.getString("COLUMN_NAME"));
                         col.setType(columnsRs.getString("TYPE_NAME"));
                         col.setComment(columnsRs.getString("REMARKS"));
+                        col.setDataType(columnsRs.getInt("DATA_TYPE"));
+                        col.setAutoincrement(columnsRs.getBoolean("IS_AUTOINCREMENT"));
+                        col.setPos(columnsRs.getInt("ORDINAL_POSITION"));
                         columns.add(col);
                     }
                     table.setColumns(columns);
@@ -56,4 +71,5 @@ public class Databse {
         });
         return result;
     }
+
 }

@@ -14,4 +14,7 @@ public class Column {
     private String name;
     private String comment;
     private String type;
+    private int dataType;
+    private boolean autoincrement;
+    private int pos;
 }
