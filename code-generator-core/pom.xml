@@ -16,6 +16,7 @@
         <dependency>
             <artifactId>code-generator-base</artifactId>
             <groupId>org.lotus.carp</groupId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.freemarker</groupId>
