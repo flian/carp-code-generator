@@ -71,33 +71,45 @@ public class JpaGenerator {
     public void rendEntityAndRepository(boolean printOnConsole) {
         Template entityTemplate = Freemarker.template(jpaConfig.getEntityTemplateName());
         Template repositoryTemplate = Freemarker.template(jpaConfig.getRepositoryTemplateName());
-
+        Template serviceTemplate = Freemarker.template(jpaConfig.getServiceTemplateName());
+        Template serviceImplTemplate = Freemarker.template(jpaConfig.getServiceImplTemplateName());
         colectionEntityList().stream().forEach(item -> {
             Writer entityWriter = null;
             Writer repositoryWriter = null;
+            Writer serviceWriter = null;
+            Writer serviceImplWriter = null;
             if (printOnConsole) {
-                entityWriter = repositoryWriter = new PrintWriter(System.out);
+                entityWriter = repositoryWriter = serviceWriter = serviceImplWriter = new PrintWriter(System.out);
             } else {
                 if (!printOnConsole) {
                     String entityOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getEntityPackage().replaceAll("\\.", pathSeparator) + pathSeparator;
                     String repositoryOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getRepositoryPackage().replaceAll("\\.", pathSeparator) + pathSeparator;
-
+                    String serviceOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getServicePackage().replaceAll("\\.", pathSeparator) + pathSeparator;
+                    String serviceImplOutputDir = jpaConfig.getOutput() + pathSeparator + jpaConfig.getServiceImplPackage().replaceAll("\\.", pathSeparator) + pathSeparator;
                     Path entityOutPath = Paths.get(entityOutputDir);
                     Path repositoryPath = Paths.get(repositoryOutputDir);
+                    Path servicePath = Paths.get(serviceOutputDir);
+                    Path serviceImplPath = Paths.get(serviceImplOutputDir);
                     makeSureFolderExist(entityOutPath);
                     makeSureFolderExist(repositoryPath);
+                    makeSureFolderExist(servicePath);
+                    makeSureFolderExist(serviceImplPath);
                     try {
                         entityWriter = new OutputStreamWriter(new FileOutputStream(entityOutputDir + item.getEntityFileName()));
                         repositoryWriter = new OutputStreamWriter(new FileOutputStream(repositoryOutputDir + item.getRepositoryFileName()));
+                        serviceWriter = new OutputStreamWriter(new FileOutputStream(serviceOutputDir + item.getServiceFileName()));
+                        serviceImplWriter = new OutputStreamWriter(new FileOutputStream(serviceImplOutputDir + item.getServiceFileName()));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
             }
-            Map params = new HashMap();
+            Map params = new HashMap(5);
             params.put("entity", item);
             Freemarker.render(entityTemplate, params, entityWriter);
             Freemarker.render(repositoryTemplate, params, repositoryWriter);
+            Freemarker.render(serviceTemplate, params, serviceWriter);
+            Freemarker.render(serviceImplTemplate, params, serviceImplWriter);
         });
     }
 
@@ -114,6 +126,11 @@ public class JpaGenerator {
             entityDto.setUuid("" + uuid() + "L");
             entityDto.setEntityPackage(jpaConfig.getEntityPackage());
             entityDto.setRepositoryPackage(jpaConfig.getRepositoryPackage());
+            entityDto.setServicePackage(jpaConfig.getServicePackage());
+            entityDto.setServiceImplPackage(jpaConfig.getServiceImplPackage());
+            entityDto.setServiceSufix(jpaConfig.getServiceSufix());
+            entityDto.setServiceImplSufix(jpaConfig.getServiceImplSufix());
+
             String className = toClassName(table.getName());
             entityDto.setClassName(className);
             entityDto.setComment(table.getComment());

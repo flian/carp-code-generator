@@ -23,6 +23,10 @@ public class EntityDto {
     private String repositoryPackage;
     private String entitySufix;
     private String repositorySufix;
+    private String servicePackage;
+    private String serviceSufix;
+    private String serviceImplPackage;
+    private String serviceImplSufix;
     private String pkType;
     private String comment;
     private List<EntityAttributeDto> attributes;
@@ -34,7 +38,12 @@ public class EntityDto {
     public String getRepositoryFileName() {
         return className + repositorySufix + ".java";
     }
-
+    public String getServiceFileName(){
+        return className + serviceSufix + ".java";
+    }
+    public String getnServiceImplFileName(){
+        return className + serviceImplSufix + ".java";
+    }
     public String getName() {
         return className;
     }

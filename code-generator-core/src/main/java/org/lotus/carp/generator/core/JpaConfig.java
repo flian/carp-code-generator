@@ -23,6 +23,14 @@ public class JpaConfig implements Prefix {
     private String repositorySufix;
     private String repositoryTemplateName;
 
+    private String servicePackage;
+    private String serviceSufix;
+    private String serviceTemplateName;
+
+    private String serviceImplPackage;
+    private String serviceImplSufix;
+    private String serviceImplTemplateName;
+
     private String author = "carp-code-generator";
 
     @Override
