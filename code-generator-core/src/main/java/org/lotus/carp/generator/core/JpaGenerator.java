@@ -98,7 +98,7 @@ public class JpaGenerator {
                         entityWriter = new OutputStreamWriter(new FileOutputStream(entityOutputDir + item.getEntityFileName()));
                         repositoryWriter = new OutputStreamWriter(new FileOutputStream(repositoryOutputDir + item.getRepositoryFileName()));
                         serviceWriter = new OutputStreamWriter(new FileOutputStream(serviceOutputDir + item.getServiceFileName()));
-                        serviceImplWriter = new OutputStreamWriter(new FileOutputStream(serviceImplOutputDir + item.getServiceFileName()));
+                        serviceImplWriter = new OutputStreamWriter(new FileOutputStream(serviceImplOutputDir + item.getServiceImplFileName()));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

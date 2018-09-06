@@ -41,7 +41,7 @@ public class EntityDto {
     public String getServiceFileName(){
         return className + serviceSufix + ".java";
     }
-    public String getnServiceImplFileName(){
+    public String getServiceImplFileName(){
         return className + serviceImplSufix + ".java";
     }
     public String getName() {
