@@ -10,6 +10,7 @@ import org.junit.Test;
  * Date: 7/26/2018
  * Time: 10:56 AM
  */
+@Deprecated
 public class JpaGeneratorTest {
 
     @Test

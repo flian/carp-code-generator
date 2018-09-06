@@ -33,6 +33,10 @@ public class JpaConfig implements Prefix {
 
     private String author = "carp-code-generator";
 
+    private Boolean printOnConsole = false;
+
+    private String scanForProcessorPackages = "org.lotus.carp";
+
     @Override
     public String prefix() {
         return "jpa";
