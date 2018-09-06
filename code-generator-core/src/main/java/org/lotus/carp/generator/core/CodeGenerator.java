@@ -74,6 +74,8 @@ public class CodeGenerator {
                 }
                 Map params = new HashMap(5);
                 params.put("entity", item);
+                //添加参数
+                processor.addationParamsBeforeRenderPage(params);
                 Freemarker.render(processor.codeTemplate(jpaConfig), params, writer);
                 if (jpaConfig.getPrintOnConsole()) {
                     Freemarker.render(processor.codeTemplate(jpaConfig), params, console);
