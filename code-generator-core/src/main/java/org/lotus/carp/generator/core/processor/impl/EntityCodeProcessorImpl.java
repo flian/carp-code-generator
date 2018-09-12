@@ -45,6 +45,6 @@ public class EntityCodeProcessorImpl implements CodeProcessor {
      */
     @Override
     public String fileName(JpaConfig config, EntityDto entity) {
-        return entity.getRepositoryFileName();
+        return entity.getEntityFileName();
     }
 }

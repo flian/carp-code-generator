@@ -1,5 +1,6 @@
 package ${entity.serviceImplPackage};
 
+import org.springframework.stereotype.Service;
 import ${entity.servicePackage}.${entity.name}${entity.serviceSufix};
 
 /**
