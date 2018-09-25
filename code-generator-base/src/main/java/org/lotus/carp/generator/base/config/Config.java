@@ -19,7 +19,7 @@ public class Config {
     private static Properties generator;
     public static JdbcConfig jdbcConfig;
     public static GeneratorConfig generatorConfig;
-    private static final String[] CONFIG_PROPERTIES = {"generator-base.properties", "generator-core.properties", "generatorExtend.properties", "generator-others.properties"};
+    private static final String[] CONFIG_PROPERTIES = {"generator-base.properties", "generator-core.properties", "generatorExtend.properties"};
 
     static {
         generator = new Properties();

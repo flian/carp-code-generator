@@ -1,6 +1,7 @@
 package org.lotus.carp.generator.core.utils;
 
 import com.google.common.base.CaseFormat;
+import lombok.extern.slf4j.Slf4j;
 import org.lotus.carp.generator.base.table.Column;
 import org.lotus.carp.generator.base.table.Table;
 import org.lotus.carp.generator.core.JpaConfig;
@@ -26,9 +27,10 @@ import static java.sql.Types.*;
  * Date: 9/6/2018
  * Time: 4:22 PM
  */
+@Slf4j
 public class GeneratorUtils {
 
-    public static List<EntityDto> collectEntityList(List<Table> tableInfo, JpaConfig jpaConfig,String date,String time) {
+    public static List<EntityDto> collectEntityList(List<Table> tableInfo, JpaConfig jpaConfig, String date, String time) {
         final List<EntityDto> result = new ArrayList<>();
         tableInfo.forEach(table -> {
             EntityDto entityDto = new EntityDto();
@@ -64,6 +66,7 @@ public class GeneratorUtils {
         });
         return result;
     }
+
     public static void makeSureFolderExist(Path out) {
         if (!Files.exists(out)) {
             try {
@@ -76,6 +79,10 @@ public class GeneratorUtils {
     }
 
     public static String map2JavaType(Column column) {
+        if (null == column) {
+            log.error("WTF? column is null?");
+            return String.class.getSimpleName();
+        }
         switch (column.getDataType()) {
             case BIT:
             case TINYINT:
@@ -103,6 +110,7 @@ public class GeneratorUtils {
                 return String.class.getSimpleName();
         }
     }
+
     private static Long uuid() {
         return UUID.randomUUID().getMostSignificantBits();
     }
