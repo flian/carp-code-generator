@@ -19,19 +19,17 @@ public class Config {
     private static Properties generator;
     public static JdbcConfig jdbcConfig;
     public static GeneratorConfig generatorConfig;
+    private static final String[] CONFIG_PROPERTIES = {"generator-base.properties", "generator-core.properties", "generatorExtend.properties", "generator-others.properties"};
 
     static {
         generator = new Properties();
-        try {
-            generator.load(Config.class.getClassLoader().getResourceAsStream("generator.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            generator.load(Config.class.getClassLoader().getResourceAsStream("generatorExtend.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Arrays.stream(CONFIG_PROPERTIES).forEach(p -> {
+            try {
+                generator.load(Config.class.getClassLoader().getResourceAsStream(p));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         try {
             jdbcConfig = config(JdbcConfig.class);
             generatorConfig = config(GeneratorConfig.class);
