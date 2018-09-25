@@ -24,10 +24,10 @@ public class EntityAttributeDto {
     }
 
     public String getGetterMethodName() {
-        return "get" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, propertyName.toLowerCase());
+        return "get" + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, propertyName);
     }
 
-    public String getSetterMethodname() {
-        return "set" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, propertyName.toLowerCase());
+    public String getSetterMethodName() {
+        return "set" + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, propertyName);
     }
 }
