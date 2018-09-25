@@ -1,5 +1,6 @@
 package org.lotus.carp.generator.core.dto;
 
+import com.google.common.base.CaseFormat;
 import lombok.Data;
 
 /**
@@ -20,5 +21,13 @@ public class EntityAttributeDto {
 
     public boolean getHasComment() {
         return comment == null || comment.length() == 0 ? false : true;
+    }
+
+    public String getGetterMethodName() {
+        return "get" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, propertyName.toLowerCase());
+    }
+
+    public String getSetterMethodname() {
+        return "set" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, propertyName.toLowerCase());
     }
 }

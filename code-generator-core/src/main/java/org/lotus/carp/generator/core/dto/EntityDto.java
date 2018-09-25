@@ -1,5 +1,6 @@
 package org.lotus.carp.generator.core.dto;
 
+import com.google.common.base.Strings;
 import lombok.Data;
 
 import java.util.List;
@@ -21,28 +22,30 @@ public class EntityDto {
     private String uuid;
     private String entityPackage;
     private String repositoryPackage;
-    private String entitySufix;
-    private String repositorySufix;
+    private String entitySufix = "";
+    private String repositorySufix = "";
     private String servicePackage;
-    private String serviceSufix;
+    private String serviceSufix = "";
     private String serviceImplPackage;
-    private String serviceImplSufix;
+    private String serviceImplSufix = "";
     private String pkType;
     private String comment;
     private List<EntityAttributeDto> attributes;
 
     public String getEntityFileName() {
-        return className + entitySufix + ".java";
+        return className + Strings.nullToEmpty(entitySufix)+ ".java";
     }
 
     public String getRepositoryFileName() {
-        return className + repositorySufix + ".java";
+        return className +  Strings.nullToEmpty(repositorySufix) + ".java";
     }
-    public String getServiceFileName(){
-        return className + serviceSufix + ".java";
+
+    public String getServiceFileName() {
+        return className +  Strings.nullToEmpty(serviceSufix) + ".java";
     }
-    public String getServiceImplFileName(){
-        return className + serviceImplSufix + ".java";
+
+    public String getServiceImplFileName() {
+        return className +  Strings.nullToEmpty(serviceImplSufix) + ".java";
     }
     public String getName() {
         return className;
