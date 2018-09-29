@@ -1,5 +1,6 @@
 package org.lotus.carp.generator.core;
 
+import com.google.common.base.Strings;
 import org.lotus.carp.generator.base.config.Config;
 import org.lotus.carp.generator.base.table.Databse;
 import org.lotus.carp.generator.base.table.Table;
@@ -14,6 +15,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,17 +37,33 @@ public class CodeGenerator {
         LocalDateTime now = LocalDateTime.now();
         date = now.format(df);
         time = now.format(tf);
-        Reflections reflections = new Reflections(jpaConfig.getScanForProcessorPackages());
-        Set<Class<? extends CodeProcessor>> processes = reflections.getSubTypesOf(CodeProcessor.class);
-        processes.stream().forEach(processor -> {
-            try {
-                processors.add(processor.newInstance());
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+        //scan multiple package for processor
+        Set<String> packages = new HashSet<>();
+
+        if (!Strings.isNullOrEmpty(jpaConfig.getCoreScanForProcessorPackages())) {
+            packages.addAll(Arrays.stream(jpaConfig.getCoreScanForProcessorPackages().split(",")).collect(Collectors.toList()));
+        }
+        if (!Strings.isNullOrEmpty(jpaConfig.getExtendScanForProcessorPackages())) {
+            packages.addAll(Arrays.stream(jpaConfig.getCoreScanForProcessorPackages().split(",")).collect(Collectors.toList()));
+        }
+
+        packages.stream().forEach(p -> {
+            if (p == null) {
+                return;
             }
+            Reflections reflections = new Reflections(p);
+            Set<Class<? extends CodeProcessor>> processes = reflections.getSubTypesOf(CodeProcessor.class);
+            processes.stream().forEach(processor -> {
+                try {
+                    processors.add(processor.newInstance());
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            });
         });
+
     }
 
     static {

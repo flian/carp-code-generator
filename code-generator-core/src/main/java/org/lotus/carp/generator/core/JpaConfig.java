@@ -35,8 +35,9 @@ public class JpaConfig implements Prefix {
 
     private Boolean printOnConsole = false;
 
-    private String scanForProcessorPackages = "org.lotus.carp";
+    private String coreScanForProcessorPackages = "org.lotus.carp.generator.core.processor";
 
+    private String extendScanForProcessorPackages = null;
     @Override
     public String prefix() {
         return "jpa";
