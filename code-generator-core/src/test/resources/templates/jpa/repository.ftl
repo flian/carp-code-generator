@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Created by ${entity.author}
+ * repository -  ${entity.comment}
  *
  * @author:  ${entity.author}
  * Date: ${entity.date}

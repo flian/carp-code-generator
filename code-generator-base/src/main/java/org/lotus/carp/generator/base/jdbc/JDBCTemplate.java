@@ -6,6 +6,7 @@ import org.lotus.carp.generator.base.config.JdbcConfig;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,7 +38,15 @@ public class JDBCTemplate {
         JdbcConfig config = Config.jdbcConfig;
         try {
             Class.forName(config.getDriver());
-            return DriverManager.getConnection(config.getUrl(), config.getUserName(), config.getPassword());
+            Properties props =new Properties();
+            props.setProperty("user", config.getUserName());
+            props.setProperty("password", config.getPassword());
+            //设置可以获取remarks信息
+            props.setProperty("remarks", "true");
+            //设置可以获取tables remarks信息
+            props.setProperty("useInformationSchema", "true");
+            Connection conn = DriverManager.getConnection(config.getUrl(), props);
+            return conn;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

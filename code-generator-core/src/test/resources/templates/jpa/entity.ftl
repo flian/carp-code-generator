@@ -9,6 +9,7 @@ import java.util.Date;
 
 /**
  * Created  by ${entity.author}
+ * entity -  ${entity.comment}
  *
  * @author: ${entity.author}
  * Date: ${entity.date}

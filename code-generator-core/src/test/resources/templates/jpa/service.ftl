@@ -2,6 +2,7 @@ package ${entity.servicePackage};
 
 /**
  * Created  by ${entity.author}
+ * service -  ${entity.comment}
  *
  * @author: ${entity.author}
  * Date: ${entity.date}

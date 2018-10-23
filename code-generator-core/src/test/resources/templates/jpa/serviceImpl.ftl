@@ -5,6 +5,7 @@ import ${entity.servicePackage}.${entity.name}${entity.serviceSufix};
 
 /**
  * Created  by ${entity.author}
+ * serviceImpl -  ${entity.comment}
  *
  * @author: ${entity.author}
  * Date: ${entity.date}
