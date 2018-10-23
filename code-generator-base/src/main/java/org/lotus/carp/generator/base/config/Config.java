@@ -26,8 +26,8 @@ public class Config {
         Arrays.stream(CONFIG_PROPERTIES).forEach(p -> {
             try {
                 generator.load(Config.class.getClassLoader().getResourceAsStream(p));
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+               log.error("error load properties from:"+p,e);
             }
         });
         try {
