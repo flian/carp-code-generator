@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
+ * entity - ${entity.comment}
+ *
  * Created  by ${entity.author}
  *
  * @author: ${entity.author}

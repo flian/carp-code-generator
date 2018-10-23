@@ -5,6 +5,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 /**
+ * repository - ${entity.comment}
+ *
  * Created by ${entity.author}
  *
  * @author:  ${entity.author}
