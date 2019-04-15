@@ -51,7 +51,7 @@ public class Freemarker implements Prefix {
     }
 
     private String templatePath() {
-        return dir + "/" + type;
+        return "/"+dir + "/" + type;
     }
 
 
