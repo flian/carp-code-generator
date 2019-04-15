@@ -24,7 +24,7 @@ import java.util.Map;
 public class Freemarker implements Prefix {
     private String dir;
     private String type;
-    private Boolean useClassPathLoader = false;
+    private Boolean useDirectoryForTemplateLoading = false;
     private static Configuration instance;
     private static Freemarker config = null;
 
@@ -80,7 +80,7 @@ public class Freemarker implements Prefix {
         instance = new Configuration(Configuration.VERSION_2_3_27);
         // plain directory for it, but non-file-system sources are possible too:
         try {
-            if (config.useClassPathLoader) {
+            if (config.useDirectoryForTemplateLoading) {
                 //use directory for template find
                 instance.setDirectoryForTemplateLoading((new ClassPathResource(config.templatePath())).getFile());
             } else {
