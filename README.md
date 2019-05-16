@@ -21,3 +21,12 @@ public static void main(String[] args) {
 and put them under `${template.dir}/${template.type}` to generator your own class.
 
 5. please reference `EntityDto.java` and `EntityAttributeDto.java` for properties can be used in templates.
+
+deploy to private nexus：
+mvn deploy -Dmaven.test.skip=true
+
+maven release plugin manual：
+see [maven-release-plugin](http://maven.apache.org/maven-release/maven-release-plugin/prepare-mojo.html) for more detail
+
+prepare release：mvn release:prepare
+release ：mvn release:perform
